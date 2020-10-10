@@ -10,5 +10,10 @@ hdfs dfs -mkdir yelp-1
 mkdir yelp-1
 mkdir yelp-1/checkin-count/
 
+#Creating yelp-1 and yelp-1/checkin_month_year_count/ in Local filesystem
+mkdir yelp-1/checkin_month_year_total
+
+
+
 #Changing permission to allow Hive
 hdfs dfs -chmod -R o+w .
