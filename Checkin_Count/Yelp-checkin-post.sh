@@ -7,6 +7,14 @@ hdfs dfs -get /user/malam/yelp-1/checkin-count/0000*
 
 cat 0000* > checkin_count_out.csv
 
+cd yelp-1/checkin_month_year_count/
+
+hdfs dfs -get /user/malam/yelp-1/checkin_month_year_total/0*
+
+cat 00* > checkin_month_year_total.csv
+
+
+#to copy the file from server to Local Computer; run these commands in the local PC
 scp malam@129.150.79.19:/home/malam/yelp-1/checkin-count/checkin_count_out.csv checkin_count.csv
 
 
