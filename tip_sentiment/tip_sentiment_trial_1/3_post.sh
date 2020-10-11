@@ -1,4 +1,4 @@
-#Run this commands after running the commands from tip_sentiment.hql file
+#Run this command after running the commands from tip_sentiment_trial.hql file
 
 hdfs dfs -get hdfs://mycluster/apps/hive/warehouse/rlunett.db/tip_sentiment
 
