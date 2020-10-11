@@ -1,5 +1,3 @@
---Creating table raw_checkin from the yelp_academic_dataset_checkin.json file. This json file is saved in the /user/malam/yelp-checkin directory of HDFS file system
-create external table raw_checkin (json_response string) stored as textfile location '/user/malam/yelp/checkin';
 --Creating yelp_checkin. It has two columns: business_id, checkin_timestamps
 create table yelp_checkin (business_id string, checkin_timestamps string);
 --Populating yelp_checkin table based on the raw_checkin table.This command splits the raw data into two columns.
