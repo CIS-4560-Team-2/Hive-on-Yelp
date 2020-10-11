@@ -6,7 +6,7 @@
 mkdir yelp/results/tip_sentiment
 
 #Creating tip_sentiment_trial directory in Local filesystem
-mkdir yelp/tip_sentiment_trial_1
+mkdir yelp/results/tip_sentiment_tip_sentiment_trial_1
 
 #Download dictionary file to analyze sentiment of data in Local filesystem
 wget -O dictionary.tsv https://s3.amazonaws.com/hipicdatasets/dictionary.tsv
