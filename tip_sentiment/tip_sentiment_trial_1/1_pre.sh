@@ -11,13 +11,9 @@ mkdir yelp/tip_sentiment_trial_1
 #Download dictionary file to analyze sentiment of data in Local filesystem
 wget -O dictionary.tsv https://s3.amazonaws.com/hipicdatasets/dictionary.tsv
 
-#Create tmp/data/dictionary directory in the HDFS (/home/malam/) to upload dictionary files to
-hdfs dfs -mkdir tmp
-hdfs dfs -mkdir tmp/data
-hdfs dfs -mkdir tmp/data/dictionary
+#Create yelp/tip/dictionary directory in the HDFS (/home/malam/) to upload dictionary files to
+hdfs dfs -mkdir yelp/tip/dictionary
 
 #Upload the dictionary.tsv file into the above directory
-hdfs dfs -put dictionary.tsv tmp/data/dictionary
+hdfs dfs -put dictionary.tsv yelp/tip/dictionary
 
-#Updating permissions to ensure Hive write privledges granted in new directory
-hdfs dfs -chmod -R o+w tmp/
