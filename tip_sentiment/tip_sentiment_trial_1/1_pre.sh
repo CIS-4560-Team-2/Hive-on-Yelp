@@ -1,12 +1,13 @@
 #!/bin/bash
 
+#All examples below are done using the agreed upon local directory for custom tables and queries:  /home/malam/yelp/results
 
-#Creating tip_sentiment directory within user/malam/yelp/results directory in Local filesystem
+#Creating tip_sentiment directory in Local filesystem
 mkdir yelp/results/tip_sentiment
 
-#Creating tip_sentiment_trial directory within the user/malam/yelp/results/tip_sentiment directory in Local filesystem
+#Creating tip_sentiment_trial directory in Local filesystem
 mkdir yelp/tip_sentiment_trial_1
 
-#Download dictionary file to analyze sentiment of data
+#Download dictionary file to analyze sentiment of data in Local filesystem
 wget -O dictionary.tsv https://s3.amazonaws.com/hipicdatasets/dictionary.tsv
 
