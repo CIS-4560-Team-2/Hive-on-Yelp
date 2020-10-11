@@ -46,5 +46,4 @@
   when sum( polarity ) < 0 then 'negative'
   else 'neutral' end as sentiment
   from l3_tip group by user_id;
-  
-  
+
