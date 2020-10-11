@@ -11,5 +11,4 @@
 --Create table 'dictionary', which has polarity to show each word’s meaning implied as positive or negative.
 
 CREATE EXTERNAL TABLE if not exists dictionary (type string, length int, word string, pos string, stemmed string, polarity string)
-ROW FORMAT DELIMITED FIELDS TERMINATED BY '\t' STORED AS TEXTFILE LOCATION '/user/malam/tmp/data/dictionary';
-
+ROW FORMAT DELIMITED FIELDS TERMINATED BY '\t' STORED AS TEXTFILE LOCATION '/user/malam/yelp/tip/dictionary';
