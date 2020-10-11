@@ -16,4 +16,5 @@ hdfs dfs -mkdir tmp
 hdfs dfs -mkdir tmp/data
 hdfs dfs -mkdir tmp/data/dictionary
 
-
+#Upload the dictionary.tsv file into the above directory
+hdfs dfs -put dictionary.tsv tmp/data/dictionary
