@@ -18,3 +18,6 @@ hdfs dfs -mkdir tmp/data/dictionary
 
 #Upload the dictionary.tsv file into the above directory
 hdfs dfs -put dictionary.tsv tmp/data/dictionary
+
+#Updating permissions to ensure Hive write privledges granted in new directory
+hdfs dfs -chmod -R o+w tmp/
