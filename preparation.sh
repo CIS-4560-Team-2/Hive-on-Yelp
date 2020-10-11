@@ -41,3 +41,9 @@ hdfs dfs -ls -h yelp/checkin
 hdfs dfs -ls -h yelp/review
 hdfs dfs -ls -h yelp/tip
 hdfs dfs -ls -h yelp/user
+
+#create directory to process & save outputs
+hdfs dfs -mkdir yelp/results
+
+#changing permission to avoid errors in Hive
+hdfs dfs -chmod -R o+w .
