@@ -9,6 +9,8 @@ There are five JSON files in this dataset: business, checkin, review, user, and 
 
 preparation.sh prepares the user machine by extracting JSON files from the archive and moving the JSON files to HDFS filesystem.
 
+raw_tables.hql file creates five raw tables based on the five JSON files.
+
 HiveQL related to processing and analysis of data are saved in sub-directories. These sub-directories may also contain two bash script files: pre and post. These files hold necessary commands for input and output handling in the user machine.
 
 
