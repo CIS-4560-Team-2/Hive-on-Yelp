@@ -12,7 +12,7 @@ create table checkin_month_year row format delimited fields terminated by '\t' s
 
 --check-in counts per month per year 
 --not complete
-create table checkin_month_year_total row format delimited fields terminated by '\t' stored as textfile location "/user/malam/yelp-1/checkin_month_year_total" as select year(timestamps) checkin_year, month(timestamps) checkin_month, count(business_id) checkin_counts from checkin1 group by timestamps;
+create table checkin_month_year_total row format delimited fields terminated by '\t' stored as textfile location "/user/malam/yelp-1/checkin_month_year_total" as select checkin_year, checkin_month, count(business_id) checkin_counts from checkin_month_year group by checkin_year, checkin_month;
 
 --Creating a summary table with GROUP BY command to find out check in information for all businesses.
 create table checkin_count row format delimited fields terminated by '\t' stored as textfile location "/user/malam/yelp-1/checkin-count"  as select business_id, count(timestamps) from checkin1 group by business_id;
