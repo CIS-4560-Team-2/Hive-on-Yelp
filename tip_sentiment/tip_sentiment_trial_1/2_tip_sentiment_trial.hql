@@ -35,4 +35,4 @@ CREATE EXTERNAL TABLE if not exists dictionary (type string, length int, word st
   from l2_tip left outer join dictionary d on l2_tip.word = d.word;
   
 --Assign whether a tip was positive, neutral, or negative.
-create table IF NOT EXISTS tip_sentiment stored as textfile location '/user/malam/yelp/results/tip_sentiment/' as select user_id, case when sum( polarity ) > 0 then 'positive' when sum( polarity ) < 0 then 'negative' else 'neutral' end as sentiment from l3_tip group by user_id;
+create table IF NOT EXISTS tip_sentiment row format delimited fields terminated by ',' stored as textfile location '/user/malam/yelp/results/tip_sentiment/' as select user_id, case when sum( polarity ) > 0 then 'positive' when sum( polarity ) < 0 then 'negative' else 'neutral' end as sentiment from l3_tip group by user_id;
