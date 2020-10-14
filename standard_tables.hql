@@ -10,9 +10,9 @@ CREATE TABLE checkin (business_id string, checkin_dates string);
 FROM raw_checkin INSERT OVERWRITE TABLE checkin SELECT get_json_object(json_response, '$.business_id'), get_json_object(json_response, '$.date');
 
 --Creating review table
-CREATE TABLE review (review_id string, rev_user_id string, rev_business_id string, rev_stars int, rev_useful int, rev_funny int, rev_cool int, rev_text string, rev_date date);
+CREATE TABLE review (review_id string, rev_user_id string, rev_business_id string, rev_stars int, rev_useful int, rev_funny int, rev_cool int, rev_text string, rev_date string);
 --Populating review table from raw_review
-FROM raw_review INSERT OVERWRITE TABLE review SELECT get_json_object(json_response, '$.review_id'), get_json_object(json_response, '$.user_id'), get_json_object(json_response, '$.business_id'), get_json_object(json_response, '$.stars'), get_json_object(json_response, '$.useful'), get_json_object(json_response, '$.funny'), get_json_object(json_response, '$.cool'), get_json_object(json_response, '$.text'), cast(get_json_object(json_response, '$.date') as timestamp);
+FROM raw_review INSERT OVERWRITE TABLE review SELECT get_json_object(json_response, '$.review_id'), get_json_object(json_response, '$.user_id'), get_json_object(json_response, '$.business_id'), get_json_object(json_response, '$.stars'), get_json_object(json_response, '$.useful'), get_json_object(json_response, '$.funny'), get_json_object(json_response, '$.cool'), get_json_object(json_response, '$.text'), get_json_object(json_response, '$.date');
 
 
 
