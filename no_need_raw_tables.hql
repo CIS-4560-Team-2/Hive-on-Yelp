@@ -1,3 +1,4 @@
+--No longer needed, already merged into complete_table.hql
 --Creating table raw_business from the yelp_academic_dataset_business.json file. This json file is saved in the /user/malam/yelp/business directory of HDFS file system
 create external table raw_business (json_response string) stored as textfile location '/user/malam/yelp/business';
 
