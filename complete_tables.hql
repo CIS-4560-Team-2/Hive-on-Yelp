@@ -16,9 +16,9 @@ FROM raw_checkin INSERT OVERWRITE TABLE checkin SELECT get_json_object(json_resp
 --Creating table raw_review from the yelp_academic_dataset_review.json file. This json file is saved in the /user/malam/yelp/review directory of HDFS file system
 create external table raw_review (json_response string) stored as textfile location '/user/malam/yelp/review';
 --Creating review table
-CREATE TABLE review (review_id string, rev_user_id string, rev_business_id string, rev_stars int, rev_useful int, rev_funny int, rev_cool int, rev_text string, rev_date string);
+CREATE TABLE review (review_id string, rev_user_id string, rev_business_id string, rev_stars int, rev_useful int, rev_funny int, rev_cool int, rev_text string, rev_timestamp string, rev_date date);
 --Populating review table from raw_review
-FROM raw_review INSERT OVERWRITE TABLE review SELECT get_json_object(json_response, '$.review_id'), get_json_object(json_response, '$.user_id'), get_json_object(json_response, '$.business_id'), get_json_object(json_response, '$.stars'), get_json_object(json_response, '$.useful'), get_json_object(json_response, '$.funny'), get_json_object(json_response, '$.cool'), regexp_replace(get_json_object(json_response,'$.text'), '\n', ' '), get_json_object(json_response, '$.date');
+FROM raw_review INSERT OVERWRITE TABLE review SELECT get_json_object(json_response, '$.review_id'), get_json_object(json_response, '$.user_id'), get_json_object(json_response, '$.business_id'), get_json_object(json_response, '$.stars'), get_json_object(json_response, '$.useful'), get_json_object(json_response, '$.funny'), get_json_object(json_response, '$.cool'), regexp_replace(regexp_replace(get_json_object(json_response,'$.text'), '\n', ' '), '\r', ' '), get_json_object(json_response, '$.date'), cast(substr(get_json_object(json_response, '$.date'),0,10) as date);
 
 --Creating table raw_tip from the yelp_academic_dataset_tip.json file. This json file is saved in the /user/malam/yelp/tip directory of HDFS file system
 create external table raw_tip (json_response string) stored as textfile location '/user/malam/yelp/tip';
