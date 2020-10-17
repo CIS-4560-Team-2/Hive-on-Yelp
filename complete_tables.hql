@@ -23,9 +23,9 @@ FROM raw_review INSERT OVERWRITE TABLE review SELECT get_json_object(json_respon
 --Creating table raw_tip from the yelp_academic_dataset_tip.json file. This json file is saved in the /user/malam/yelp/tip directory of HDFS file system
 create external table raw_tip (json_response string) stored as textfile location '/user/malam/yelp/tip';
 --Creating table 'tip'. It has five columns: user_id, business_id, text, date, compliment_count.
-CREATE TABLE tip (user_id STRING, business_id STRING, text STRING, tip_date STRING, compliment_count STRING);
+CREATE TABLE tip (tip_id string, tip_user_id STRING, tip_business_id STRING, tip_text STRING, tip_date date, compliment_count int);
 --Populating tip table based on the raw_tip table. This command splits the raw data into 5 columns.
-FROM raw_tip INSERT OVERWRITE TABLE tip SELECT get_json_object(json_response,'$.user_id'), get_json_object(json_response,'$.business_id'), get_json_object(json_response,'$.text'), get_json_object(json_response,'$.date'), get_json_object(json_response,'$.compliment_count');
+FROM raw_tip INSERT OVERWRITE TABLE tip SELECT concat(substr(get_json_object(json_response,'$.user_id'), 0, 5), substr(get_json_object(json_response,'$.business_id'),5,5), substr(get_json_object(json_response,'$.date'),0,19)), get_json_object(json_response,'$.user_id'), get_json_object(json_response,'$.business_id'), get_json_object(json_response,'$.text'), cast(substr(get_json_object(json_response,'$.date'),0,10) as date), get_json_object(json_response,'$.compliment_count');
 
 
 --Creating table raw_user from the yelp_academic_dataset_user.json file. This json file is saved in the /user/malam/yelp/user directory of HDFS file system
