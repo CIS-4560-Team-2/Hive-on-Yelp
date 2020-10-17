@@ -1,0 +1,5 @@
+create table users_summary as select user_id, size(split(user_friends, ',')) user_friends_count, cast(round(length(user_elite)/6) as int) user_elite_count, user_review_count, user_fans, round(user_average_stars, 2) user_average_stars, cast(substr(user_yelping_since, 0, 10) as date) user_yelping_since, (user_compliment_hot + user_compliment_more + user_compliment_profile + user_compliment_cute + user_compliment_list + user_compliment_note + user_compliment_plain + user_compliment_cool + user_compliment_funny + user_compliment_writer + user_compliment_photos) user_compliment_total from users;
+
+create view users_elite as select user_id, user_elite_year from users lateral view explode(split(user_elite, ',')) dummy as user_elite_year;
+
+create table user_elite_summary row format delimited fields terminated by ',' stored as textfile location '/user/malam/yelp/results/user_elite_summary' as select user_elite_year, count(user_id) as count_user_id from users_elite group by user_elite_year order by user_elite_year;
