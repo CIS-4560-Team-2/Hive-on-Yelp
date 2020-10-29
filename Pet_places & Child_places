@@ -1,0 +1,7 @@
+--Create table child_places
+Create table child_places row format delimited fields terminated by ',' stored AS textfile location '/user/bcevall/child_places/' AS select bus_name,bus_state,bus_city,bus_review_count, bus_categories from business Where bus_categories like '%Child%';
+
+--Create table pet_places
+Create table pet_places row format delimited fields terminated by ',' stored AS textfile location '/user/bcevall/pet_places/' AS select bus_name,bus_state,bus_city,bus_review_count, bus_categories from business Where bus_categories like '%Pets%';
+
+--edit: categories column once turned into xls
