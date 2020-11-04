@@ -26,6 +26,8 @@ create external table raw_tip (json_response string) stored as textfile location
 CREATE TABLE tip (tip_user_id STRING, tip_business_id STRING, tip_text STRING, tip_date date, tip_compliment_count int);
 --Populating tip table based on the raw_tip table. This command splits the raw data into 5 columns.
 FROM raw_tip INSERT OVERWRITE TABLE tip SELECT get_json_object(json_response,'$.user_id'), get_json_object(json_response,'$.business_id'), regexp_replace(get_json_object(json_response,'$.text'), '\n', ' '), cast(substr(get_json_object(json_response,'$.date'),0,10) as date), cast(get_json_object(json_response,'$.compliment_count') as int);
+--Creating a view tip_modified with an added column tip_id, which will act as a row identifier/primary key;
+create view tip_modified as select row_number() over() tip_id, tip_user_id, tip_business_id, tip_text, tip_date, tip_compliment_count from tip;
 
 
 --Creating table raw_user from the yelp_academic_dataset_user.json file. This json file is saved in the /user/malam/yelp/user directory of HDFS file system
