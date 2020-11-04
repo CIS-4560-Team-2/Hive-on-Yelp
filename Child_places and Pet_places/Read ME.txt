@@ -1,0 +1,4 @@
+Child_places xlsx contains information on different type of child places(such as Child daycare,child clothing, children museums,education, and elementary schools)
+ with highest reviews being Child care day cares in Las Vegas.
+
+Pet_places xlsx contains information on top reviewes for pet places per state with Las Vegas being the highest reviewed.
