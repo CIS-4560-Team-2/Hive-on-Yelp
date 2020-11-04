@@ -8,7 +8,7 @@ FROM raw_tip INSERT OVERWRITE TABLE tip SELECT get_json_object(json_response,'$.
 
 --Create table 'dictionary', which has polarity to show each word’s meaning implied as positive or negative.
 
-CREATE EXTERNAL TABLE if not exists dictionary (type string, length int, word string, pos string, stemmed string, polarity string) ROW FORMAT DELIMITED FIELDS TERMINATED BY '\t' STORED AS TEXTFILE LOCATION '/user/malam/yelp/tip/dictionary';
+CREATE EXTERNAL TABLE if not exists dictionary (type string, length int, word string, pos string, stemmed string, polarity string) ROW FORMAT DELIMITED FIELDS TERMINATED BY '\t' STORED AS TEXTFILE LOCATION '/user/malam/yelp/dictionary';
 
 --Create 3 views that will allow us to copmute tip sentiment.
 --Compute sentiment
