@@ -4,11 +4,10 @@ CREATE TABLE tip (user_id STRING, business_id STRING, text STRING, tip_date STRI
 
 --Populating tip table based on the raw_tip table. This command splits the raw data into 5 columns.
 
-FROM raw_tip INSERT OVERWRITE TABLE tip SELECT get_json_object(json_response,'$.user_id'), get_json_object(json_response,'$.business_id'), get_json_object(json_response,'$.text'), get_json_object(json_response,'$.date'), get_json_object(json_response,'$.compliment_count');
-
+FROM raw_tip INSERT OVERWRITE TABLE tip SELECT get_json_object(json_response,'$.user_id'), get_json_object(json_response,'$.business_id'), regexp_replace(get_json_object(json_response,'$.text'), '\n', ' '), cast(substr(get_json_object(json_response,'$.date'),0,10) as date), cast(get_json_object(json_response,'$.compliment_count') as int);
 --Create table 'dictionary', which has polarity to show each word’s meaning implied as positive or negative.
 
-CREATE EXTERNAL TABLE if not exists dictionary (type string, length int, word string, pos string, stemmed string, polarity string) ROW FORMAT DELIMITED FIELDS TERMINATED BY '\t' STORED AS TEXTFILE LOCATION '/user/malam/yelp/tip/dictionary';
+CREATE EXTERNAL TABLE if not exists dictionary (type string, length int, word string, pos string, stemmed string, polarity string) ROW FORMAT DELIMITED FIELDS TERMINATED BY '\t' STORED AS TEXTFILE LOCATION '/user/malam/yelp/dictionary';
 
 --Create 3 views that will allow us to copmute tip sentiment.
 --Compute sentiment
