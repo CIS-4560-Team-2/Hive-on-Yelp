@@ -8,13 +8,13 @@ create view review_location_yyyymm as select business_id, bus_latitude, bus_long
 create table city_location_mapper row format delimited fields terminated by ',' stored as textfile location '/user/malam/yelp/results/city_location_mapper' as select bus_state, regexp_replace(bus_city, ',','') bus_city , min(bus_latitude) bus_latitude, min(bus_longitude) bus_longitude from business group by bus_state, bus_city;
 
 --Creating a location identifier with State using average Latitude and Longitude
-create table state_locations row format delimited fields terminated by ',' stored as textfile location '/user/malam/yelp/results/state_locations' as select bus_state, avg(bus_latitude) state_latitude, avg(bus_longitude) state_longitude from business group by bus_state;
+create table state_locations row format delimited fields terminated by ',' stored as textfile location '/user/malam/yelp/results/state_locations' as select bus_state, avg(bus_latitude) state_latitude, min(bus_longitude) state_longitude from business group by bus_state order by bus_state;
 
---Calculating average stars per city
-create table review_location_average row format delimited fields terminated by ',' stored as textfile location '/user/malam/yelp/results/review_location_average' as select r.bus_state, c.bus_city, c.bus_latitude, c.bus_longitude, avg(rev_stars) avg_stars from review_location r, city_location_mapper c where r.bus_state = c.bus_state and regexp_replace(r.bus_city, ',', '') = c.bus_city group by r.bus_state, c.bus_city, c.bus_latitude, c.bus_longitude order by r.bus_state;
+--Calculating average stars per state
+create table review_location_average row format delimited fields terminated by ',' stored as textfile location '/user/malam/yelp/results/review_location_average' as select r.bus_state, s.state_latitude, s.state_longitude, rev_yyyy_mm, avg(rev_stars) avg_stars from review_location_yyyymm r, state_locations s where r.bus_state = s.bus_state group by r.bus_state, s.state_latitude, s.state_longitude, rev_yyyy_mm order by r.bus_state, rev_yyyy_mm;
 
 
---Counting reviews by stars by location
-create table review_category_count row format delimited fields terminated by ',' stored as textfile location '/user/malam/yelp/results/review_category' as select  r.rev_yyyy_mm, c.bus_latitude, c.bus_longitude, r.rev_stars,  count(business_id) from review_location_yyyymm r, city_location_mapper c where r.bus_state = c.bus_state and regexp_replace(r.bus_city, ',', '') = c.bus_city group by r.rev_yyyy_mm, c.bus_latitude, c.bus_longitude, r.rev_stars order by r.rev_yyyy_mm, r.rev_stars;
+--Counting reviews by stars by state
+create table review_category_count row format delimited fields terminated by ',' stored as textfile location '/user/malam/yelp/results/review_category' as select  s.bus_state, r.rev_yyyy_mm, s.state_latitude, s.state_longitude, r.rev_stars, count(business_id) from review_location_yyyymm r, state_locations s where r.bus_state = s.bus_state group by s.bus_state, r.rev_yyyy_mm, s.state_latitude, s.state_longitude, r.rev_stars order by s.bus_state, r.rev_yyyy_mm, r.rev_stars;
 
 
