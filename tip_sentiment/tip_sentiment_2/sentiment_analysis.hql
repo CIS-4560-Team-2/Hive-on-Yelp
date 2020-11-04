@@ -17,5 +17,4 @@ create view IF NOT EXISTS l2_tip2 as select business_id, bus_state, user_id, wor
 
 create view IF NOT EXISTS l3_tip2 as select business_id, bus_state, user_id, tip_date, l2_tip2.word, case d.polarity when 'negative' then -1 when 'positive' then 1 else 0 end as polarity from l2_tip2 left outer join dictionary d on l2_tip2.word = d.word;
 
-create table IF NOT EXISTS tip_sentiment2 stored as textfile location '/user/malam/yelp/results/tip_sentiment2' as select user_id, case when sum( polarity ) > 0 then 'positive' when sum( polarity ) < 0 then 'negative' else 'neutral' end as sentiment from l3_tip2 group by user_id;
-
+create table IF NOT EXISTS tip_sentiment2 row format delimited fields terminated by ',' stored as textfile location '/user/malam/yelp/results/tip_sentiment2' as select business_id, bus_state, user_id, tip_date, case when sum( polarity ) > 0 then 'positive' when sum( polarity ) < 0 then 'negative' else 'neutral' end as sentiment from l3_tip2 group by business_id, bus_state, user_id, tip_date;
