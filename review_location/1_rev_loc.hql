@@ -4,6 +4,7 @@ create view review_location as select b.business_id, bus_latitude, bus_longitude
 --Extracting month and year from review_date
 create view review_location_yyyymm as select business_id, bus_latitude, bus_longitude, bus_city, bus_state, rev_stars, cast(concat(year(rev_date), '-', month(rev_date), '-', 1) as date) rev_yyyy_mm from review_location;
 
+
 --Creating a location identifier with City, State, and Latitude and Longitude
 create table city_location_mapper row format delimited fields terminated by ',' stored as textfile location '/user/malam/yelp/results/city_location_mapper' as select bus_state, regexp_replace(bus_city, ',','') bus_city , min(bus_latitude) bus_latitude, min(bus_longitude) bus_longitude from business group by bus_state, bus_city;
 
