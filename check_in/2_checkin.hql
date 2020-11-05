@@ -5,7 +5,7 @@ create view checkin_clean as select business_id, cast(substr(timestamps, 0, 10) 
 --check-in counts per day
 create table checkin_per_day row format delimited fields terminated by ',' stored as textfile location "/user/malam/yelp/results/checkin_per_day" as select checkin_dates, count(business_id) from checkin_clean group by checkin_dates;
 
-
+create table checkin_day_state row format delimited fields terminated by ',' stored as textfile location "/user/malam/yelp/results/checkin_day_state" as select bus_state, checkin_dates, count(checkin_clean.business_id) from checkin_clean join business on checkin_clean.business_id = business.business_id group by bus_state, checkin_dates order by bus_state, checkin_dates;
 
 
 
