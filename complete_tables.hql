@@ -13,6 +13,8 @@ CREATE TABLE checkin (business_id string, checkin_dates string);
 FROM raw_checkin INSERT OVERWRITE TABLE checkin SELECT get_json_object(json_response, '$.business_id'), get_json_object(json_response, '$.date');
 
 
+
+
 --Creating table raw_review from the yelp_academic_dataset_review.json file. This json file is saved in the /user/malam/yelp/review directory of HDFS file system
 create external table raw_review (json_response string) stored as textfile location '/user/malam/yelp/review';
 --Creating review table
