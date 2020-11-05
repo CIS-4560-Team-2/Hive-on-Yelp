@@ -4,6 +4,16 @@
 
 #Since the uncompressed file is almost 10G, there could be storage limitation issues. We are extracting and uploading each files separately
 
+#Yelp dataset available at: https://yelp.com/dataset. Need to use browser to download the file in the users' local computer. After downloading, users can upload the file to the Linux server using SCP:
+scp yelp_dataset.tar malam@129.150.79.19:/home/malam/
+
+#downloading necessary files
+#dictionary.tsv file for sentiment analysis
+wget https://s3.amazonaws.com/hipicdatasets/dictionary.tsv
+
+#States names mapped to the acronym Yelp used for better location identification in Excel 3D Map
+wget https://github.com/CIS-4560-Team-2/Hive-on-Yelp/blob/main/state_locations.csv
+
 #creating all directories in HDFS
 
 hdfs dfs -mkdir yelp
@@ -12,6 +22,9 @@ hdfs dfs -mkdir yelp/checkin
 hdfs dfs -mkdir yelp/review
 hdfs dfs -mkdir yelp/tip
 hdfs dfs -mkdir yelp/user
+hdfs dfs -mkdir yelp/states
+hdfs dfs -mkdir yelp/dictionary
+
 
 #extracting, moving, and then deleting local copy
 tar -xvf yelp_dataset.tar ./yelp_academic_dataset_business.json
@@ -34,6 +47,10 @@ tar -xvf yelp_dataset.tar ./yelp_academic_dataset_user.json
 hdfs dfs -put yelp_academic_dataset_user.json yelp/
 rm yelp_academic_dataset_user.json
 
+#uploading the support files to HDFS
+hdfs dfs -put dictionary.tsv yelp/dictionary
+hdfs dfs -put state_locations.csv yelp/states
+
 
 #checking if files are uploaded to HDFS properly
 hdfs dfs -ls -h yelp/business
@@ -41,6 +58,8 @@ hdfs dfs -ls -h yelp/checkin
 hdfs dfs -ls -h yelp/review
 hdfs dfs -ls -h yelp/tip
 hdfs dfs -ls -h yelp/user
+hdfs dfs -ls -h yelp/dictionary
+hdfs dfs -ls -h yelp/states
 
 #create directory to process & save outputs
 hdfs dfs -mkdir yelp/results
