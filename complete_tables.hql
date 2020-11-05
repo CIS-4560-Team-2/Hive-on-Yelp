@@ -37,5 +37,7 @@ CREATE TABLE users (user_id string, user_name string, user_review_count int, use
 --Populating users from raw_user
 FROM raw_user INSERT OVERWRITE TABLE users SELECT get_json_object(json_response, '$.user_id'), get_json_object(json_response, '$.name'), get_json_object(json_response, '$.review_count'), get_json_object(json_response, '$.yelping_since'), get_json_object(json_response, '$.friends'), get_json_object(json_response, '$.useful'), get_json_object(json_response, '$.funny'), get_json_object(json_response, '$.cool'), get_json_object(json_response, '$.fans'), get_json_object(json_response, '$.elite'), get_json_object(json_response, '$.average_stars'), get_json_object(json_response, '$.compliment_hot'), get_json_object(json_response, '$.compliment_more'), get_json_object(json_response, '$.compliment_profile'), get_json_object(json_response, '$.compliment_cute'), get_json_object(json_response, '$.compliment_list'), get_json_object(json_response, '$.compliment_note'), get_json_object(json_response, '$.compliment_plain'), get_json_object(json_response, '$.compliment_cool'), get_json_object(json_response, '$.compliment_funny'), get_json_object(json_response, '$.compliment_writer'), get_json_object(json_response, '$.compliment_photos');
 
---Creating an attribute table for business
---not finished: create table business_attribute as select business_id, bus_attributes  explode(split(bus_attributes, ','))
+
+
+--Creating state_locations table 
+CREATE TABLE state_locations (bus_state string, state_names string) row format delimited fields terminated by ',' stored as textfile location '/user/malam/yelp/states/';
