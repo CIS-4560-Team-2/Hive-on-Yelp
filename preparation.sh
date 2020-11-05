@@ -11,8 +11,9 @@ scp yelp_dataset.tar malam@129.150.79.19:/home/malam/
 #dictionary.tsv file for sentiment analysis
 wget https://s3.amazonaws.com/hipicdatasets/dictionary.tsv
 
-#States names mapped to the acronym Yelp used for better location identification in Excel 3D Map
-wget https://github.com/CIS-4560-Team-2/Hive-on-Yelp/blob/main/state_locations.csv
+#States names mapped to the acronym Yelp used for better location identification in Excel 3D Map: https://drive.google.com/file/d/1PkWtxa3VeTZS-WMRcv8yPdQFQ1If7AsR/view 
+#Download the file in local system and upload it to Oracle Server by SCP:
+scp state_locations.csv malam@129.150.79.19:/home/malam
 
 #creating all directories in HDFS
 
