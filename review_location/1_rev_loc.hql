@@ -5,7 +5,6 @@ create view review_location as select b.business_id, bus_latitude, bus_longitude
 create view review_location_yyyymm as select business_id, bus_latitude, bus_longitude, bus_city, bus_state, rev_stars, cast(concat(year(rev_date), '-', month(rev_date), '-', 1) as date) rev_yyyy_mm from review_location;
 
 
-
 --Counting rating stars per state
 create table rating_category_count row format delimited fields terminated by ',' stored as textfile location '/user/malam/yelp/results/rating_category' as select  s.country_names, s.state_names, r.rev_yyyy_mm, r.rev_stars, count(business_id) from review_location_yyyymm r join state_locations s where r.bus_state = s.bus_state group by s.country_names, s.state_names, r.rev_yyyy_mm, r.rev_stars order by s.country_names, s.state_names, r.rev_yyyy_mm, r.rev_stars;
 
