@@ -7,7 +7,7 @@ There are five JSON files in this dataset: business, checkin, review, user, and 
 
 We have run descriptive analytics on the Yelp dataset to find out how different features of Yelp evolved throughout last decades, how businesses in different states receive different level of ratings, what people express in their tips by doing sentiment analysis. 
 For the sentiment analysis, we have used a dictionary dataset found here: https://s3.amazonaws.com/hipicdatasets/dictionary.tsv
-state_locations.csv file is used for producing better location detection in Excel 3D Map; it can be found here: https://drive.google.com/file/d/1PkWtxa3VeTZS-WMRcv8yPdQFQ1If7AsR/view
+state_locations.txt file is used for producing better location detection in Excel 3D Map; it can be found here: https://drive.google.com/file/d/1dFrIcQuBhaANRHHvnzbthfU3HHVDRy7Y/view?usp=drivesdk
 
 ## Structure
 
