@@ -7,7 +7,7 @@ BC	British Columbia	 Canada
 CA	California	 USA
 CO	Colorado	 USA
 CT	Connecticut	 USA
-DOW	Ulster	 Northern Ireland
+DOW	Ulster County	 Northern Ireland
 DUR	Durham County	 United Kingdom
 FL	Florida	 USA
 GA	Georgia	 USA
