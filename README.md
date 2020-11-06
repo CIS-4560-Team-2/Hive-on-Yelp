@@ -17,7 +17,7 @@ This flow chart explains the top-level view of overall operation.
 ### preparation.sh
 This file prepares the user machine by extracting JSON files from the archive and moving the JSON files to HDFS filesystem.
 
-### complete_tables.hql 
+### primary_tables.hql 
 This file creates initial raw tables based on the five JSON files, and standard tables based on the raw tables. 
 
 ### state_locations.txt
