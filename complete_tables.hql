@@ -40,4 +40,4 @@ FROM raw_user INSERT OVERWRITE TABLE users SELECT get_json_object(json_response,
 
 
 --Creating state_locations table 
-CREATE EXTERNAL TABLE state_locations (bus_state string, state_names string) row format delimited fields terminated by '\t' stored as textfile location '/user/malam/yelp/states/';
+CREATE EXTERNAL TABLE state_locations (bus_state string, state_names string, country_names string) row format delimited fields terminated by '\t' stored as textfile location '/user/malam/yelp/states/';
