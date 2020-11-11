@@ -1,9 +1,12 @@
 ﻿# Hive-on-Yelp
 ## Introduction
 
+This repository is hosting our analysis of Yelp Dataset. Yelp Dataset is available here: https://www.yelp.com/dataset/download
+
+
 Complete tutorial is available here: https://tinyurl.com/yelp-hive-tutorial
 
-This repository is hosting our analysis of Yelp Dataset. Yelp Dataset is available here: https://www.yelp.com/dataset/download
+
 
 There are five JSON files in this dataset: business, checkin, review, user, and tip. Our downloaded version of the dataset is 9.8 GB when uncompressed. 
 
