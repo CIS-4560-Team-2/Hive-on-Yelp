@@ -6,8 +6,10 @@ This repository is hosting our analysis of Yelp Dataset. Yelp Dataset is availab
 There are five JSON files in this dataset: business, checkin, review, user, and tip. Our downloaded version of the dataset is 9.8 GB when uncompressed. 
 
 We have run descriptive analytics on the Yelp dataset to find out how different features of Yelp evolved throughout last decades, how businesses in different states receive different level of ratings, what people express in their tips by doing sentiment analysis. 
+
 For the sentiment analysis, we have used a dictionary dataset found here: https://s3.amazonaws.com/hipicdatasets/dictionary.tsv
-state_locations.txt file is used for producing better location detection in Excel 3D Map; it can be found here: https://drive.google.com/file/d/1dFrIcQuBhaANRHHvnzbthfU3HHVDRy7Y/view?usp=drivesdk
+
+state_locations.txt file is used for producing better location detection in Excel 3D Map; it can be found here: https://drive.google.com/uc?id=1dFrIcQuBhaANRHHvnzbthfU3HHVDRy7Y&export=download
 
 ## Structure
 
