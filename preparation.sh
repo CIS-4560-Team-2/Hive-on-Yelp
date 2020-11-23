@@ -45,7 +45,7 @@ hdfs dfs -put yelp_academic_dataset_tip.json yelp/tip
 rm yelp_academic_dataset_tip.json
 
 tar -xvf yelp_dataset.tar ./yelp_academic_dataset_user.json
-hdfs dfs -put yelp_academic_dataset_user.json yelp/
+hdfs dfs -put yelp_academic_dataset_user.json yelp/user
 rm yelp_academic_dataset_user.json
 
 #uploading the support files to HDFS
