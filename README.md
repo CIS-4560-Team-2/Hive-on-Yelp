@@ -18,6 +18,15 @@ state_locations.txt file is used for producing better location detection in Exce
 
 ## Structure
 
+### Deliverables
+All the final submissions are saved in this directory.
+
+### Outputs
+This directory holds all the final output files. 
+
+### tutorial_codes
+This directory contains all the final codes in one place.
+
 ### Workflow Chart.jpg 
 This flow chart explains the top-level view of overall operation.  
 
@@ -30,8 +39,3 @@ This file creates initial raw tables based on the five JSON files, and standard 
 ### state_locations.txt
 Maps state acronyms used in the Yelp Dataset to complete state names with country names for better map rendering.
 
-### Outputs
-This directory holds all the final output files. 
-
-### tutorial_codes
-This directory contains all the final codes in one place.
