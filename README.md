@@ -24,8 +24,11 @@ All the final submissions are saved in this directory.
 ### Outputs
 This directory holds all the final output files. 
 
-### tutorial_codes
+### Codes
 This directory contains all the final codes in one place.
+
+### drafts
+This directory contains all the previous versions and ongoing works
 
 ### Workflow Chart.jpg 
 This flow chart explains the top-level view of overall operation.  
