@@ -4,7 +4,7 @@
 This repository is hosting our analysis of Yelp Dataset. Yelp Dataset is available here: https://www.yelp.com/dataset/download
 
 
-Complete tutorial is available here: https://tinyurl.com/yelp-hive-tutorial
+Complete tutorial is available here: https://tinyurl.com/hive-on-yelp
 
 
 
