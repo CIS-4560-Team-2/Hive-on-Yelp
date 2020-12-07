@@ -1,3 +1,6 @@
+--Using Split function to split the checkin_dates strings to arrays of timestamps and Explode function to create new rows for each timestamp. Saving this data into a view.
+CREATE VIEW checkin_clean as select business_id, cast(substr(timestamps, 0, 10) as date) checkin_dates from checkin lateral view explode(split(checkin_dates, ', ')) dummy as timestamps;
+
 --Creating checkin_per_year table to count all check-ins per year 
 CREATE TABLE checkin_per_year as SELECT checkin_year, count(business_id) checkin_count FROM (SELECT year(checkin_dates) checkin_year, business_id FROM checkin_clean) checkin_temp GROUP BY checkin_year ORDER BY checkin_year;
 
