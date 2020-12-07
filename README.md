@@ -25,7 +25,7 @@ All the final submissions are saved in this directory.
 This directory holds all the final output files. 
 
 ### Codes
-This directory contains all the final codes in one place.
+This directory contains all the final codes in one place. Please replace UNAME with appropriate username.
 
 ### drafts
 This directory contains all the previous versions and ongoing works
